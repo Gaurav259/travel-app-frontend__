@@ -1,5 +1,5 @@
 import { Route,Routes } from 'react-router-dom';
-import { Home ,SingleHotel} from './pages';
+import { Home ,SearchResults,SingleHotel} from './pages';
 
 import "./App.css";
 
@@ -10,6 +10,7 @@ function App() {
         <Route path="/hotels/:name/:address/:id/reserve"
         element={<SingleHotel />}
       />
+      <Route path="/hotels/:address" element={<SearchResults/>} />
 </Routes>
  );
 }

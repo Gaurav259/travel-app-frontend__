@@ -47,7 +47,8 @@ export const Home = () => {
       }        
   
   return (
-    <Fragment>
+    
+    <div className="relative">
       <Navbar />
       <Categories/>
       
@@ -76,6 +77,6 @@ export const Home = () => {
      
      
      
-    </Fragment>
+    </div>
   );
 };
