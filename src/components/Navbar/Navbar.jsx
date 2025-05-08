@@ -5,7 +5,7 @@ export const Navbar = () => {
 
   const {destination,dateDispatch,checkInDate,checkOutDate,guests} = useDate();
 
-  const {authDispatch} =useAuth();
+  const {authDispatch,accessToken} =useAuth();
 
   const handleSearchClick = () => {
     dateDispatch({
@@ -15,12 +15,17 @@ export const Navbar = () => {
   }
 
   const handleAuthClick = () => {
-    authDispatch({
-      type:"SHOW_AUTH_MODAL",
+    if (accessToken) {
+      authDispatch({
+        type: "SHOW_DROP_DOWN_OPTIONS"
+      })
+    } else {
+      authDispatch({
+        type: "SHOW_AUTH_MODAL",
+      });
+     }
 
-    })
-  }
-
+    }
   return (
     <header className="heading d-flex align-center">
       <h1 className="heading-1">

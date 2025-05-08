@@ -1,7 +1,7 @@
 import { Fragment,useEffect,useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { HotelCard, Navbar,Categories ,SearchStayWithDate,Filter,AuthModal} from "../../components";
+import { HotelCard, Navbar,Categories ,SearchStayWithDate,Filter,AuthModal,ProfileDropDown} from "../../components";
 import "./Home.css";
 import axios from "axios";
 import { useCategory,useDate,useFilter,useAuth} from "../../context";
@@ -18,7 +18,7 @@ export const Home = () => {
   const {isSearchModalOpen} = useDate();
   const {isFilterModalOpen,priceRange, noOfBathrooms, noOfBedrooms,noOfBeds,propertyType,traveloRating,isCancelable} =useFilter();
 
-  const {isAuthModalOpen} = useAuth();
+  const {isAuthModalOpen,isDropDownModalOpen} = useAuth();
 
   useEffect(() => {
       (async () => {
@@ -81,7 +81,7 @@ export const Home = () => {
         </InfiniteScroll>
         ):(<></>)
       }
-     
+      {isDropDownModalOpen && <ProfileDropDown />}
      {isSearchModalOpen && <SearchStayWithDate/>}
      {isFilterModalOpen && <Filter/>}
      {isAuthModalOpen && <AuthModal/>}

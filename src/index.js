@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router} from "react-router-dom";
 import App from './App';
-import { CategoryProvider,DateProvider ,FilterProvider,AuthProvider} from './context';
+import { CategoryProvider,DateProvider ,FilterProvider,AuthProvider,WishlistProvider} from './context';
 
 
 
@@ -14,7 +14,9 @@ root.render(
       <DateProvider>
         <FilterProvider>
           <AuthProvider>
+            <WishlistProvider>
         <App />
+        </WishlistProvider>
         </AuthProvider>
     </FilterProvider>
     </DateProvider>
