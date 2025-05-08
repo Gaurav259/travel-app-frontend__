@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
@@ -6,7 +6,10 @@ import {
   HotelDetails,
   HotelImages,
   Navbar,
+  AuthModal,
+  ProfileDropDown,
 } from "../../components";
+import { useAuth } from "../../context";
 import "./SingleHotel.css";
 
 export const SingleHotel = () => {
@@ -27,9 +30,10 @@ export const SingleHotel = () => {
   }, [id]);
 
   const { name, state } = singleHotel;
-
+  const { isAuthModalOpen, isDropDownModalOpen } = useAuth();
   return (
-    <Fragment>
+    <div className="relative">
+    
       <Navbar />
       <main className="single-hotel-page">
         <p className="hotel-name-add">
@@ -41,6 +45,9 @@ export const SingleHotel = () => {
           <FinalPrice  singleHotel={singleHotel}/>
         </div>
       </main>
-    </Fragment>
+      {isDropDownModalOpen && <ProfileDropDown />}
+      {isAuthModalOpen && <AuthModal />}
+      </div>
+   
   );
 };

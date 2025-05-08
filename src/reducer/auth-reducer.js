@@ -65,6 +65,12 @@ export const authReducer = (state, { type, payload }) => {
               ...state,
               isDropDownModalOpen: !state.isDropDownModalOpen
             }
+            case "CLEAR_CREDENTIALS":
+              return {
+                ...state,
+                accessToken: "",
+                name: ""
+              }
     default:
       return state;
   }
