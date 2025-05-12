@@ -1,17 +1,26 @@
 import { useDate } from "../../context";
 import "./FinalPrice.css";
 import { DateSelector } from "../DateSelector/DateSelector";
+import { useNavigate } from "react-router-dom";
 
 export const FinalPrice = ({ singleHotel }) => {
-  const { price, rating } = singleHotel;
+  const { _id,price, rating } = singleHotel;
 
-  const { guests,  dateDispatch } = useDate();
+  const navigate = useNavigate();
+
+  const { guests,  dateDispatch,
+      checkInDate,
+      checkOutDate,} = useDate();
 
   const handleGuestsChange = (event) => {
       dateDispatch({
         type: "GUESTS",
         payload: event.target.value,
       })
+  }
+
+  const handleReserveClick = () => {
+    navigate(`/confirm-booking/stay/${_id}`)
   }
 
   console.log({handleGuestsChange})
@@ -54,7 +63,7 @@ export const FinalPrice = ({ singleHotel }) => {
         </div>
       </div>
       <div>
-        <button className="button btn-reserve btn-primary cursor">
+        <button className="button btn-reserve btn-primary cursor" onClick={handleReserveClick} disabled={ checkInDate && checkOutDate && guests > 0 ? false : true}>
           Reserve
         </button>
       </div>
